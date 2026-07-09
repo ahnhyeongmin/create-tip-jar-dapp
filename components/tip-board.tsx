@@ -18,7 +18,8 @@ interface TipBoardProps {
   refreshKey: number
 }
 
-function shortenAddress(address: string): string {
+function shortenAddress(address: string | undefined): string {
+  if (!address) return '0x???...????'
   return `${address.slice(0, 6)}...${address.slice(-4)}`
 }
 
@@ -131,7 +132,7 @@ export function TipBoard({ refreshKey }: TipBoardProps) {
                 >
                   <div className="flex flex-col gap-0.5 min-w-0">
                     <span className="font-mono text-xs text-muted-foreground">
-                      {shortenAddress(tip.tipper)}
+                      {shortenAddress(tip.from)}
                     </span>
                     {tip.note ? (
                       <p className="text-sm text-foreground leading-relaxed break-words">

@@ -18,61 +18,126 @@
  */
 
 export const CONTRACT_ADDRESS =
-  '0x0000000000000000000000000000000000000000' as `0x${string}`
+  '0xC17988D9b2DfE24F6C9d21A2F72517767c944323' as `0x${string}`
 
 export const CONTRACT_ABI = [
-  // Write functions
+
   {
-    name: 'tip',
-    type: 'function',
-    stateMutability: 'payable',
-    inputs: [{ name: 'note', type: 'string' }],
-    outputs: [],
-  },
-  {
-    name: 'withdraw',
-    type: 'function',
-    stateMutability: 'nonpayable',
-    inputs: [],
-    outputs: [],
-  },
-  // Read functions
-  {
-    name: 'totalRaised',
-    type: 'function',
-    stateMutability: 'view',
-    inputs: [],
-    outputs: [{ name: '', type: 'uint256' }],
-  },
-  {
-    name: 'getTips',
-    type: 'function',
-    stateMutability: 'view',
-    inputs: [],
-    outputs: [
+    "inputs": [
       {
-        name: '',
-        type: 'tuple[]',
-        components: [
-          { name: 'tipper', type: 'address' },
-          { name: 'amount', type: 'uint256' },
-          { name: 'note', type: 'string' },
-          { name: 'timestamp', type: 'uint256' },
-        ],
-      },
+        "internalType": "string",
+        "name": "note",
+        "type": "string"
+      }
     ],
+    "name": "tip",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
   },
   {
-    name: 'owner',
-    type: 'function',
-    stateMutability: 'view',
-    inputs: [],
-    outputs: [{ name: '', type: 'address' }],
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
   },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "note",
+        "type": "string"
+      }
+    ],
+    "name": "Tipped",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "withdraw",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getTips",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "note",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timestamp",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct TipJar.Tip[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "totalRaised",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+
 ] as const
 
 export type TipEntry = {
-  tipper: `0x${string}`
+  from: `0x${string}`
   amount: bigint
   note: string
   timestamp: bigint
